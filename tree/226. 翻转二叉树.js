@@ -17,3 +17,28 @@ var invertTree = function (root) {
 	root.right = temp
 	return root
 }
+
+// 自顶向下
+var invertTree = function (root) {
+	if (root === null) return root
+	const temp = root.left
+	root.left = root.right
+	root.right = temp
+
+	invertTree(root.left)
+	invertTree(root.right)
+	return root
+}
+
+// 自底向上
+var invertTree = function (root) {
+	if (root === null) return root
+
+	invertTree(root.left)
+	invertTree(root.right)
+
+	const temp = root.left
+	root.left = root.right
+	root.right = temp
+	return root
+}
