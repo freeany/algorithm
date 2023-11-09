@@ -28,10 +28,9 @@ var deleteDuplicates = function (head) {
 }
 
 var deleteDuplicates123 = function (head) {
-	let ele = {
-		next: head
-	}
-	let p = ele
+	if (head == null) return null
+
+	let p = head
 	while (p.next) {
 		if (p.val === p.next.val) {
 			p.next = p.next.next
@@ -39,5 +38,5 @@ var deleteDuplicates123 = function (head) {
 			p = p.next
 		}
 	}
-	return ele.next
+	return head
 }
