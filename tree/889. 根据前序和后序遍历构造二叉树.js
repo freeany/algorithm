@@ -8,16 +8,15 @@
  */
 /**
  * @param {number[]} preorder
- * @param {number[]} inorder
+ * @param {number[]} postorder
  * @return {TreeNode}
- preorder = [3,9,20,15,7]
- inorder = [9,3,15,20,7]
+ preorder = [1,2,4,5,3,6,7], postorder = [4,5,2,6,7,3,1]
  */
-var buildTree = function (preorder, inorder) {
+var constructFromPrePost = function (preorder, postorder) {
 	if (preorder.length == 0) return null
 	const root = new TreeNode(preorder[0])
-	const index = inorder.indexOf(root.val)
-	root.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index))
-	root.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1))
+	const index = postorder.indexOf(preorder[1])
+	root.left = constructFromPrePost(preorder.slice(1, index + 2), postorder.slice(0, index + 1))
+	root.right = constructFromPrePost(preorder.slice(index + 2), postorder.slice(index + 1, -1))
 	return root
 }
